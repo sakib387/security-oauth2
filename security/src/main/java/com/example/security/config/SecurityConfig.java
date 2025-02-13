@@ -31,6 +31,8 @@ public class SecurityConfig {
                         // .requestMatchers(HttpMethod.POST, "api/users").permitAll()
                         .anyRequest().authenticated()
                 )
+
+                .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
                 .oauth2Login(Customizer.withDefaults())
                ;
