@@ -32,10 +32,9 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
 
-                .formLogin(Customizer.withDefaults())
+              .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
-                .oauth2Login(Customizer.withDefaults())
-               ;
+                .oauth2Login(Customizer.withDefaults())  ;
         return http.build();
     }
 

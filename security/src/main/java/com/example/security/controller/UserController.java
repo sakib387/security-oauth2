@@ -45,9 +45,5 @@ public class UserController {
 
 
 
-    @GetMapping("/get-token")
-    public String getGitHubToken(@AuthenticationPrincipal(expression = "name") String username) {
-        return oauthService.getGitHubToken(username);
-    }
 
 }
