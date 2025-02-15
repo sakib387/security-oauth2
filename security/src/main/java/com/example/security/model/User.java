@@ -3,7 +3,7 @@ package com.example.security.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users_table")
 
 public class User {
     @Id
@@ -25,12 +25,12 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
-    public Long getId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setId(Long id) {
-        this.userId = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -49,23 +49,11 @@ public class User {
         this.password = password;
     }
 
-    public String getRoles() {
-        if(isAdmin)
-            return "ROLE_ADMIN";
-        return "ROLE_USER";
+    public boolean isAdmin() {
+        return isAdmin;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", isAdmin=" + isAdmin +
-                '}';
-    }
-
-    public void setRoles(boolean isAdmin) {
-        this.isAdmin = isAdmin;
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }
