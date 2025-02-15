@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
+import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.*;
@@ -27,8 +28,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @SpringBootTest
-
-@AutoConfigureMockMvc
 class UserControllerTest {
 
     private MockMvc mockMvc;
@@ -48,7 +47,7 @@ class UserControllerTest {
 
     @Test
     public void testFindAll() throws Exception {
-        when(userService.findAll()).thenReturn(Collections.singletonList(user));
+        when(userService.findAll()).thenReturn(List.of(user));
 
         mockMvc.perform(get("/abc"))
                 .andExpect(status().isOk())
@@ -60,7 +59,7 @@ class UserControllerTest {
 
     @Test
     public void testSaveUser() throws Exception {
-       // when(userService.save(user)).thenReturn(user);
+        // when(userService.save(user)).thenReturn(user);
         when(userService.save(any(User.class))).thenReturn(user);
         String reqBody = new ObjectMapper().writeValueAsString(user);
         mockMvc.perform(post("/abc")
@@ -73,7 +72,7 @@ class UserControllerTest {
 
                 .andExpect(jsonPath("$.username").value("testuser"))
 
-               .andDo(print())
+                .andDo(print())
                 .andExpect(status().isOk());
 
     }
