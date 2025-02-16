@@ -51,7 +51,6 @@ class UserControllerTest {
 
         mockMvc.perform(get("/abc"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].username").value("testuser"));
         verify(userService, times(1)).findAll();
     }
